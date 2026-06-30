@@ -30,8 +30,9 @@ agentsetup self doctor
 
 ## Registry Setup
 
-AgentSetup uses a local registry checkout for reusable skills, rules, templates,
-packages, and project assignment metadata.
+AgentSetup uses a local custom registry checkout for reusable skills, rules,
+templates, packages, and project assignment metadata. The registry repository is
+owned by you or your team and can be named anything.
 
 Default registry path:
 
@@ -39,16 +40,47 @@ Default registry path:
 ~/.agentsetup/repo
 ```
 
-Initialize it from `agentsetup-registry`:
+Initialize it from your registry repository:
 
 ```bash
 mkdir -p ~/.agentsetup
-git clone git@github.com:wenqiangde/agentsetup-registry.git ~/.agentsetup/repo
+git clone git@github.com:<owner>/<registry-repo>.git ~/.agentsetup/repo
 agentsetup repo doctor
 ```
 
 `~/.agentsetup/repo` is the registry checkout. It is not the AgentSetup CLI
 source repository.
+
+Recommended registry layout:
+
+```text
+.
+├── registry.json
+├── projects/
+│   └── myapp.json
+├── sources/
+│   ├── package-manifest.tsv
+│   ├── skills/
+│   │   └── <skill-name>/
+│   │       └── SKILL.md
+│   ├── rules/
+│   │   ├── codex/
+│   │   ├── claude/
+│   │   ├── cursor/
+│   │   └── trae/
+│   └── templates/
+│       ├── codex/
+│       ├── claude/
+│       ├── cursor/
+│       └── trae/
+└── packages/
+    ├── codex/
+    ├── claude/
+    ├── cursor/
+    └── trae/
+```
+
+Edit `sources/`; run `agentsetup build` to regenerate `packages/`.
 
 ## Add A Project
 
@@ -221,8 +253,8 @@ The AgentSetup CLI source repository is:
 https://github.com/wenqiangde/agentsetup
 ```
 
-The registry content repository is:
+The registry content repository is custom. It is cloned locally at:
 
 ```text
-git@github.com:wenqiangde/agentsetup-registry.git
+~/.agentsetup/repo
 ```
