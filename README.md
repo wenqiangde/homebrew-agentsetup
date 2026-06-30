@@ -10,5 +10,5 @@ This repository only stores the Homebrew formula. The AgentSetup CLI source and
 release workflow live in:
 
 ```text
-https://github.com/wenqiangde/agent-setup
+https://github.com/wenqiangde/agentsetup
 ```
