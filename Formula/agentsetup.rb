@@ -26,6 +26,7 @@ class Agentsetup < Formula
 
   def install
     bin.install Dir["agentsetup-*"].first => "agentsetup"
+    chmod 0755, bin/"agentsetup"
     generate_completions_from_executable(bin/"agentsetup", "completion")
   end
 
